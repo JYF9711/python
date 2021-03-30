@@ -1,2 +1,2 @@
-a=1234
-print(a)
+class A:
+    pass
