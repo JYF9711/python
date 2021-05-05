@@ -2,6 +2,7 @@ from pyspark.sql import Row
 from pyspark import SparkContext
 from pyspark.sql import SparkSession
 import pandas as pd
+import matplotlib.pyplot as plt
 
 spark=SparkSession.builder.appName("rddDataFrame").master("local[*]").getOrCreate()
 #读取数据
@@ -15,4 +16,5 @@ book_df.select(book_df['id'],book_df['name'],book_df['rating']-1).show()
 book_pds=book_df.groupBy('publish').count()
 book_pds=book_pds.toPandas()
 ax=book_pds.head(n=10).plot(x='publish',y=['count'],kind='bar',title='book count of publish')
-print(ax)
+
+
