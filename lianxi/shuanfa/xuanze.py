@@ -5,6 +5,7 @@ def selectSort(arr):
         minIndex=i
         for j in range(i+1,len(arr)):
             if arr[j] < arr[minIndex]:
+            # if arr[j] < arr[i]:
                 minIndex=j
         #i不是最小数时，将i和最小数进行交换
         if i != minIndex:
@@ -22,4 +23,4 @@ def maopaoSort(arr):
 
 if __name__ =="__main__":
     aaa=[12,32,22,14,41,33,23]
-    print(maopaoSort(aaa))
+    print(selectSort(aaa))
