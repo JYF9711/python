@@ -63,11 +63,10 @@ from pyspark.mllib.recommendation import ALS
 rdd = rating_rdd.map(lambda x: (x[3], x[0], x[1]))
 rdd.take(5)
 
-
 #训练模型
-model = ALS.train(rdd, 10, 10, 0.01)
+model = ALS.train(rdd, 50, 10, 0.01)
 #使用模型进行推荐，参数为用户 id，推荐个数
-user_film = model.recommendProducts(112, 3)
+user_film = model.recommendProducts(881250949, 3)
 print(user_film)
 
 #显示推荐电影名称
@@ -91,7 +90,7 @@ print('model saved!')
 #调用模型
 from pyspark.mllib.recommendation import MatrixFactorizationModel
 model = MatrixFactorizationModel.load(sc, save_path)
-result = model.recommendProducts(112, 3)
+result = model.recommendProducts(881250949, 3)
 for film in user_film:
     spark.sql("select id , title,post_time,url , "+str(film[2])+" as similar from film where id="+str(film[1])).show()
 
